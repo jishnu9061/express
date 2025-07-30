@@ -1,15 +1,12 @@
-const mongoose = require('mongoose');
+// config/db.js
+import mongoose from 'mongoose';
 
-const connectDb = async () => {
-    try {
-        await mongoose.connect('mongodb://localhost:27017/students', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-        console.log("Database connection is Ready");
-    } catch (error) {
-        console.error("A error has been occurred while connecting to database.");
-    }
+export const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb://127.0.0.1:27017/students');
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('MongoDB connection error:', err.message);
+    process.exit(1);
+  }
 };
-
-module.exports = connectDb;

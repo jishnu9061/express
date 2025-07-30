@@ -1,9 +1,13 @@
-const express = require('express');
-const userRoutes = require('./routes/userRoutes');
-
+import express from 'express';
 const app = express();
 
 app.use(express.json());
-app.use('/users', userRoutes); 
+app.use(express.urlencoded({ extended: true }));
 
-module.exports = app;
+import userRoutes from './routes/userRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
+
+app.use('/users', userRoutes);
+app.use('/tasks', taskRoutes);
+
+export default app;
